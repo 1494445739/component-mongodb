@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/data/mongo
+       http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+
+    <!--
+       connections-per-host: 每个主机答应的连接数（每个主机的连接池大小），当连接池被用光时，会被阻塞住
+       max-wait-time: 被阻塞线程从连接池获取连接的最长等待时间（ms）
+       connect-timeout:在建立（打开）套接字连接时的超时时间（ms）
+       socket-timeout:套接字超时时间;该值会被传递给Socket.setSoTimeout(int)
+       slave-ok:指明是否答应驱动从次要节点或者奴隶节点读取数据
+    -->
+    <mongo:mongo id="mongo" replica-set="#{props['mongoDB.replicaSet']}">
+        <mongo:options
+                connections-per-host="#{props['mongoDB.connectionsPerHost']}"
+                threads-allowed-to-block-for-connection-multiplier="#{props['mongoDB.threadsAllowedToBlockForConnectionMultiplier']}"
+                connect-timeout="#{props['mongoDB.connectTimeout']}"
+                max-wait-time="#{props['mongoDB.maxWaitTime']}"
+                auto-connect-retry="#{props['mongoDB.autoConnectRetry']}"
+                socket-keep-alive="#{props['mongoDB.socketKeepAlive']}"
+                socket-timeout="#{props['mongoDB.socketTimeout']}"
+                slave-ok="#{props['mongoDB.slaveOk']}"
+                write-number="#{props['mongoDB.writeNumbe']}"
+                write-timeout="#{props['mongoDB.writeTimeout']}"
+                write-fsync="#{props['mongoDB.writeFsync']}"/>
+    </mongo:mongo>
+
+    <!-- 设置使用的数据库名-->
+    <mongo:db-factory dbname="#{props['mongoDB.dbName']}" mongo-ref="mongo"/>
+
+    <!-- mongodb的模板 -->
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
+    </bean>
+
+</beans>
