@@ -22,7 +22,7 @@
     <!-- ====================================================== -->
     <url>http://www.tzg.cn</url>
     <name>${project.artifactId}</name>
-    <description>======== foo ========</description>
+    <description>======== mongodb组件扩展 ========</description>
 
     <!-- ====================================================== -->
     <!--                        开发者介绍                       -->
