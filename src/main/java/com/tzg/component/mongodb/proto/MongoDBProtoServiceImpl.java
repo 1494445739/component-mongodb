@@ -1,4 +1,4 @@
-package com.tzg.component.mongodb;
+package com.tzg.component.mongodb.proto;
 
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
@@ -28,11 +28,13 @@ public class MongoDBProtoServiceImpl< T > implements MongoDBProtoService< T > {
     }
 
     @Override
+    @SuppressWarnings( "unchecked" )
     public T selectOne( Query query, T object, String collectionName ) throws Exception {
         return ( T ) mongoTemplate.findOne( query, object.getClass(), collectionName );
     }
 
     @Override
+    @SuppressWarnings( "unchecked" )
     public List< T > selectList( Query query, T object, String collectionName ) throws Exception {
         return ( List< T > ) mongoTemplate.find( query, object.getClass(), collectionName );
     }

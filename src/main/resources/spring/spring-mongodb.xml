@@ -24,7 +24,7 @@
                 socket-keep-alive="#{props['mongoDB.socketKeepAlive']}"
                 socket-timeout="#{props['mongoDB.socketTimeout']}"
                 slave-ok="#{props['mongoDB.slaveOk']}"
-                write-number="#{props['mongoDB.writeNumbe']}"
+                write-number="#{props['mongoDB.writeNumber']}"
                 write-timeout="#{props['mongoDB.writeTimeout']}"
                 write-fsync="#{props['mongoDB.writeFsync']}"/>
     </mongo:mongo>
