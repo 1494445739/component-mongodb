@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.query.Update;
 
 import java.util.List;
 
-public interface MongoDBProtoService< T > {
+public interface MongoDBService< T > {
 
     void insert( T object, String collectionName ) throws Exception;
 
