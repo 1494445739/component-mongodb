@@ -1,4 +1,4 @@
-package com.tzg.component.mongodb.proto;
+package com.tzg.component.mongodb;
 
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
